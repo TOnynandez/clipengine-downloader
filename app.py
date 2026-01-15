@@ -53,13 +53,8 @@ def download_video():
             'no_warnings': True,
         }
         
-        # Si hay timestamps, descargar solo esa parte
-        if start_time and end_time:
-            ydl_opts['download_ranges'] = lambda info, ydl: [(
-                parse_time(start_time), 
-                parse_time(end_time)
-            )]
-            ydl_opts['force_keyframes_at_cuts'] = True
+        # Nota: descargamos el video completo
+        # Creatomate se encargará de cortar en el timestamp correcto
         
         # Descargar video
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
